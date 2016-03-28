@@ -1,10 +1,13 @@
 class AppointmentsController < ApplicationController
+
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index,:show, :edit, :update, :destroy]
 
   # GET /appointments
   # GET /appointments.json
   def index
     @appointments = Appointment.all
+    #@appointments = current_user.appointment.all
   end
 
   # GET /appointments/1
@@ -14,18 +17,16 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
-    @appointment = Appointment.new
+   #@appointment = Appointment.new
+   @appointment = current_user.appointments.build
   end
 
-  # GET /appointments/1/edit
-  def edit
-  end
 
   # POST /appointments
   # POST /appointments.json
   def create
-    @appointment = Appointment.new(appointment_params)
-
+    @appointment = current_user.appointments.build(appointment_params)
+    #@appointment = Appointment.new(appointment_params)
     respond_to do |format|
       if @appointment.save
         format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
@@ -35,6 +36,11 @@ class AppointmentsController < ApplicationController
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  
+  # GET /appointments/1/edit
+  def edit
   end
 
   # PATCH/PUT /appointments/1

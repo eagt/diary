@@ -1,14 +1,33 @@
 Rails.application.routes.draw do
 
+  get 'users/login'
+
+  get 'users/signout'
+
+  get 'users/signup'
+
+  root 'pages#home'
+
+  get "about"=> "pages#about", as: :about
+
+  get "contact"=> "pages#contact", as: :contact
+
+  get "signin"=> "pages#signin", as: :signin
+
+  get "signup" => "pages#signup", as: :signup
+
   devise_for :users
+  
   resources :appointments
+
+  
   #get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'welcome#index'
+   #root 'welcome#index'
 
     
 
