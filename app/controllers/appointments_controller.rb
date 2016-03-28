@@ -6,8 +6,10 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = Appointment.all
-    #@appointments = current_user.appointment.all
+  # Show appointments only from the current user
+    @appointments = current_user.appointments
+  # Show appointments from all users 
+    #@appointments = Appointment.all
   end
 
   # GET /appointments/1
@@ -17,8 +19,12 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
+
+   @appointment = current_user.appointments.build 
+   #New appointments without user
    #@appointment = Appointment.new
-   @appointment = current_user.appointments.build
+
+
   end
 
 
@@ -26,6 +32,7 @@ class AppointmentsController < ApplicationController
   # POST /appointments.json
   def create
     @appointment = current_user.appointments.build(appointment_params)
+    #Create appointments without user
     #@appointment = Appointment.new(appointment_params)
     respond_to do |format|
       if @appointment.save

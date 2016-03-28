@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   
+validates :name, presence: true
+
   def login
   end
 
@@ -9,10 +11,10 @@ class UsersController < ApplicationController
   def signup
   end
 
-  private
+  # private
 
-  def user_params
-   	params.require(:appointment).permit(:name, :email, :password, :password_confirmation)
+  # def user_params
+  #  	params.require(:user).permit(:name, :email, :password, :password_confirmation)
 
   # end
 end

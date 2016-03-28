@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   get "contact"=> "pages#contact", as: :contact
 
-  get "signin"=> "pages#signin", as: :signin
+  # get "signin"=> "pages#signin", as: :signin
 
-  get "signup" => "pages#signup", as: :signup
+  # get "signup" => "pages#signup", as: :signup
 
   devise_for :users
   
